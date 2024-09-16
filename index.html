@@ -17,7 +17,7 @@
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
-            overflow: hidden;
+            overflow-x: hidden;
         }
         .loader {
             position: fixed;
@@ -211,6 +211,60 @@
             from { transform: translateY(-50px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(8, 1fr);
+            }
+            .main-title {
+                grid-column: span 8;
+            }
+            .profile-picture {
+                grid-column: span 4;
+            }
+            .description {
+                grid-column: span 4;
+            }
+            .contact-card, .projects, .skills {
+                grid-column: span 4;
+            }
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .main-title {
+                grid-column: span 4;
+                font-size: 28px;
+            }
+            .profile-picture, .description {
+                grid-column: span 4;
+            }
+            .contact-card, .projects, .skills {
+                grid-column: span 4;
+            }
+        }
+        @media (max-width: 480px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            header nav a {
+                font-size: 16px;
+                margin: 0 10px;
+            }
+            .grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            .main-title {
+                grid-column: span 1;
+                font-size: 24px;
+            }
+            .profile-picture, .description, .contact-card, .projects, .skills {
+                grid-column: span 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -241,17 +295,14 @@
                 <embed src="NEW RESUME PAWAN.pdf" type="application/pdf" width="100%" height="600px" />
             </div>
         </div>
-
         <div class="grid">
-            <div class="main-title">
-                Data Scientist Crafting AI-Driven Business Insights
-            </div>
+            <h1 class="main-title">Data Scientist & Financial Enthusiast</h1>
             <div class="profile-picture">
                 <img src="me.jpg" alt="Pavan Yadav">
             </div>
             <div class="description">
                 <p>
-                    I am a data scientist with a focus on AI-driven insights and business analytics. My expertise lies in leveraging data science tools and techniques to drive strategic decisions and solve complex problems. I am passionate about turning data into actionable insights and have a keen interest in the equity market and investment strategies.
+                    I specialize in data analysis, visualization, and financial investment strategies. Let's connect and collaborate on exciting projects.
                 </p>
             </div>
             <div class="contact-card">
@@ -270,39 +321,45 @@
             </div>
             <div class="skills">
                 <h2>Skills</h2>
-                <p>Python, R, SQL, Excel, Data Analysis, Machine Learning, Statistics, Data Visualization, HTML, CSS, NodeJS</p>
+                <p>Python, R, SQL, Excel, Data Visualization, Financial Modeling</p>
             </div>
         </div>
         <footer class="footer">
-            <p>&copy; 2024 Pavan Yadav. All rights reserved.</p>
+            <p>© 2024 Pavan Yadav</a></p>
         </footer>
     </div>
+
     <script>
-        document.getElementById('openAboutModal').onclick = function() {
-            document.getElementById('aboutModal').style.display = 'block';
+        window.addEventListener('load', function() {
+            const loader = document.querySelector('.loader');
+            loader.style.display = 'none';
+        });
+
+        const aboutModal = document.getElementById("aboutModal");
+        const resumeModal = document.getElementById("resumeModal");
+
+        document.getElementById("openAboutModal").onclick = function() {
+            aboutModal.style.display = "block";
+        };
+
+        document.getElementById("openResumeModal").onclick = function() {
+            resumeModal.style.display = "block";
+        };
+
+        const closeButtons = document.getElementsByClassName("close");
+        for (let i = 0; i < closeButtons.length; i++) {
+            closeButtons[i].onclick = function() {
+                this.parentElement.parentElement.style.display = "none";
+            };
         }
 
-        document.getElementById('openResumeModal').onclick = function() {
-            document.getElementById('resumeModal').style.display = 'block';
-        }
-        var modals = document.querySelectorAll('.modal');
-        var closes = document.querySelectorAll('.close');
-        closes.forEach(function(span) {
-            span.onclick = function() {
-                modals.forEach(function(modal) {
-                    modal.style.display = 'none';
-                });
-            }
-        });
         window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
+            if (event.target == aboutModal) {
+                aboutModal.style.display = "none";
+            } else if (event.target == resumeModal) {
+                resumeModal.style.display = "none";
             }
-        }
-        window.onload = function() {
-            document.querySelector('.loader').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
+        };
     </script>
 </body>
 </html>
