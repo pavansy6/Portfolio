@@ -6,6 +6,7 @@
     <title>Pavan Yadav - Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
+        /* General Styles */
         * {
             margin: 0;
             padding: 0;
@@ -13,360 +14,392 @@
         }
         body {
             font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
+            background-color: #f5f5f5;
             color: #333;
-            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            line-height: 1.6;
         }
-        .loader {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
+        .dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
         }
-        .loader .spinner {
-            border: 8px solid #f3f3f3;
-            border-top: 8px solid #e63946;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+
+        /* Container */
         .container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: auto;
             padding: 20px;
         }
+
+        /* Header */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
-            background-color: #ffffff;
-            border-bottom: 1px solid #e0e0e0;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
         header h1 {
-            font-weight: 700;
-            font-size: 24px;
-            color: #000;
-        }
-        header nav {
-            display: flex;
-            border-radius: 10px;
-            overflow: hidden;
-            background-color: #f9f9f9;
-        }
-        header nav a {
-            text-decoration: none;
-            margin: 0 20px;
-            color: #333;
-            font-size: 18px;
-            padding: 10px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        header nav a:hover {
-            color: #e63946;
-            background-color: #f1f1f1;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .main-title {
-            grid-column: span 6;
-            font-size: 36px;
-            font-weight: bold;
-            color: #000;
-            line-height: 1.2;
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
-        }
-        .profile-picture {
-            grid-column: span 3;
-            border-radius: 10px;
-            overflow: hidden;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 0.5s forwards;
-        }
-        .profile-picture img {
-            width: 100%;
-            height: auto;
-        }
-        .description {
-            grid-column: span 3;
-            background-color: #f1f1f1;
-            padding: 20px;
-            border-radius: 10px;
-            color: #333;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 1s forwards;
-        }
-        .contact-card, .projects, .skills {
-            grid-column: span 3;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #e0e0e0;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 1.5s forwards;
-        }
-        .contact-card h2, .projects h2, .skills h2 {
-            color: #000;
-        }
-        .contact-card a {
-            text-decoration: none;
-            color: #e63946;
-            font-weight: bold;
-        }
-        .contact-card a:hover {
-            color: #d62828;
-        }
-        .projects ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .projects ul li {
-            margin-bottom: 10px;
-        }
-        .projects ul li a {
-            text-decoration: none;
-            color: #333;
-            transition: color 0.3s ease;
-        }
-        .projects ul li a:hover {
-            color: #e63946;
-        }
-        .skills p {
-            color: #333;
-        }
-        .footer {
-            grid-column: span 12;
-            text-align: center;
-            margin-top: 20px;
-            padding: 20px 0;
-            background-color: #f1f1f1;
-            color: #333;
-        }
-        .footer a {
-            text-decoration: none;
-            margin: 0 10px;
-            color: #333;
-            transition: color 0.3s ease;
-        }
-        .footer a:hover {
-            color: #e63946;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 50%;
-            border-radius: 10px;
-            animation: slideIn 0.5s ease-out;
-        }
-        .close {
-            color: #aaa;
-            float: right;
             font-size: 28px;
             font-weight: bold;
-            cursor: pointer;
+            font-family: 'Segoe UI', sans-serif;
+            color: #ffc107;
         }
-        .close:hover,
-        .close:focus {
-            color: black;
+        header nav a {
+            color: #fff;
+            font-size: 18px;
             text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        header nav a:hover {
+            color: #ffc107;
+        }
+        .toggle-button {
             cursor: pointer;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            font-size: 24px;
+            color: #ffc107;
         }
 
-        /* Media Queries for Responsiveness */
-        @media (max-width: 1024px) {
-            .grid {
-                grid-template-columns: repeat(8, 1fr);
-            }
-            .main-title {
-                grid-column: span 8;
-            }
-            .profile-picture {
-                grid-column: span 4;
-            }
-            .description {
-                grid-column: span 4;
-            }
-            .contact-card, .projects, .skills {
-                grid-column: span 4;
-            }
+        /* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('background.jpg') center/cover no-repeat;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-content {
+    max-width: 600px;
+    animation: fadeIn 1.5s ease;
+}
+
+.hero h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.hero h2 span {
+    color: #ffc107;
+    font-style: italic;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #ddd;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.social-icons a {
+    color: #ffc107;
+    font-size: 30px;
+    transition: transform 0.3s;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2);
+    color: #ffffff;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
         }
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            .main-title {
-                grid-column: span 4;
-                font-size: 28px;
-            }
-            .profile-picture, .description {
-                grid-column: span 4;
-            }
-            .contact-card, .projects, .skills {
-                grid-column: span 4;
-            }
+        .social-icons a {
+            color: #ffc107;
+            font-size: 30px;
+            transition: transform 0.3s;
         }
-        @media (max-width: 480px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            header nav a {
-                font-size: 16px;
-                margin: 0 10px;
-            }
-            .grid {
-                grid-template-columns: repeat(1, 1fr);
-            }
-            .main-title {
-                grid-column: span 1;
-                font-size: 24px;
-            }
-            .profile-picture, .description, .contact-card, .projects, .skills {
-                grid-column: span 1;
-            }
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 20px;
+        }
+
+        /* Projects Section */
+        .projects h2, .skills h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .project-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .project-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .project-card p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .project-card a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .skills-section h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        /* Skill Categories */
+        .skill-category {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .skill-category h3 {
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .skill-category h3:hover {
+            background-color: #0056b3;
+        }
+
+        /* Collapsible Content */
+        .skills-content {
+            display: none;
+            padding: 10px 20px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        
+        /* Skill Bars */
+        .skill-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .skill-bar div {
+            flex: 1;
+            height: 20px;
+            border-radius: 5px;
+            background: #ddd;
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-bar div span {
+            display: block;
+            height: 100%;
+            position: absolute;
+        }
+        .skill-bar p {
+            margin-left: 10px;
+            font-weight: bold;
+            color: #333;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="loader">
-        <div class="spinner"></div>
-    </div>
-    <div class="container">
-        <header>
-            <h1>Pavan Yadav</h1>
-            <nav>
-                <a href="javascript:void(0)" id="openAboutModal">About</a>
-                <a href="javascript:void(0)" id="openResumeModal">Resume</a>
-            </nav>
-        </header>
-        <div id="aboutModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>About Me</h2>
-                <p>
-                    I have been studying data science for the past 1.5 years, gaining hands-on experience with real-world tools such as Python, R, SQL, Excel, and Statistics. Through various projects, I’ve acquired valuable knowledge about industry practices. Additionally, I have been studying the equity market and investments for the last 4 years, which has strengthened my expertise in finance and investment strategies.
-                </p>
-            </div>
+    <!-- Header -->
+    <header>
+        <h1>Pavan Yadav</h1>
+        <nav>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="toggle-button" onclick="toggleDarkMode()">
+            <i id="theme-icon" class="fas fa-moon"></i>
         </div>
-        <div id="resumeModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Resume</h2>
-                <embed src="NEW RESUME PAWAN.pdf" type="application/pdf" width="100%" height="600px" />
-            </div>
-        </div>
-        <div class="grid">
-            <h1 class="main-title">Data Scientist & Financial Enthusiast</h1>
-            <div class="profile-picture">
-                <img src="me.jpg" alt="Pavan Yadav">
-            </div>
-            <div class="description">
-                <p>
-                    I specialize in data analysis, visualization, and financial investment strategies. Let's connect and collaborate on exciting projects.
-                </p>
-            </div>
-            <div class="contact-card">
-                <h2>Contact Me</h2>
-                <a href="mailto:pavansy2006@gmail.com" target="_blank">
-                    <i class="fas fa-envelope"></i>
-                    </a>
-                <a href="http://www.linkedin.com/in/pavansyadav/" target="_blank">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/pavansy6/" target="_blank">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
+    </header>
 
-            <div class="projects">
-                <h2>Projects</h2>
-                <ul>
-                    <li><a href="https://pavansy6.github.io/techjam2.0/" target="_blank">Tech Jam 2.0 Website</a></li>
-                    <li><a href="https://github.com/pavansy6/VBA-CanteenManagementSystem" target="_blank">VBA Canteen Management System</a></li>
-                    <li><a href="https://github.com/pavansy6/Chess_Analysis" target="_blank">Chess Data Analysis</a></li>
-                </ul>
+    <!-- Hero Section -->
+<div class="hero">
+    <div class="hero-content">
+        <h2>Hello, I'm <span>Pavan Yadav</span></h2>
+        <p>Data Scientist & Financial Enthusiast</p>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/pavansyadav/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:pavansy2006@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/pavansy6" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <h2>Featured Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Chess Data Analysis</h3>
+                <p>Analyzing chess game data for win probabilities and player ranking.</p>
+                <a href="https://github.com/pavansy6/Chess_Analysis" target="_blank">View Project</a>
             </div>
-            <div class="skills">
-                <h2>Skills</h2>
-                <p>Python, R, SQL, Excel, Data Visualization, Financial Modeling</p>
+            <div class="project-card">
+                <h3>HDFCBANK Stock Time Series</h3>
+                <p>Time series analysis of stock prices using ARIMA modeling.</p>
+                <a href="https://github.com/pavansy6/HDFCBANK-Time-Series-Analysis-" target="_blank">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>VBA Canteen Management System</h3>
+                <p>Excel VBA solution for managing canteen operations efficiently.</p>
+                <a href="https://github.com/pavansy6/VBA-CanteenManagementSystem" target="_blank">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>Olympics PowerBI Dashboard</h3>
+                <p>Interactive dashboard to analyze Olympics 2024 data.</p>
+                <a href="https://app.powerbi.com/groups/2e006100-2321-4bea-ac50-637cdfa9f8ea/reports/d825fcdf-214e-42fd-83ce-a9eac2e72951/8f797e45bd1dbda65549?experience=power-bi" target="_blank">View Project</a>
             </div>
         </div>
-        <footer class="footer">
-            <p>© 2024 Pavan Yadav</a></p>
-        </footer>
+    </section>
+
+    <!-- Skills Section -->
+    <div class="skills-section" id="skills">
+        <h2>Skills</h2>
+    
+        <!-- Language Skills Category -->
+        <div class="skill-category">
+            <h3 onclick="toggleSkills(this)">Languages <i class="fas fa-chevron-down"></i></h3>
+            <div class="skills-content">
+                <div class="skill-bar">
+                    <div><span style="width: 90%; background-color: #ffc107;"></span></div>
+                    <p>Python - 90%</p>
+                </div>
+                <div class="skill-bar">
+                    <div><span style="width: 70%; background-color: #4CAF50;"></span></div>
+                    <p>R - 70%</p>
+                </div>
+                <div class="skill-bar">
+                    <div><span style="width: 85%; background-color: #ff5722;"></span></div>
+                    <p>JavaScript - 85%</p>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Database Skills Category -->
+        <div class="skill-category">
+            <h3 onclick="toggleSkills(this)">Database Languages <i class="fas fa-chevron-down"></i></h3>
+            <div class="skills-content">
+                <div class="skill-bar">
+                    <div><span style="width: 80%; background-color: #ffc107;"></span></div>
+                    <p>SQL - 80%</p>
+                </div>
+                <div class="skill-bar">
+                    <div><span style="width: 75%; background-color: #007bff;"></span></div>
+                    <p>MySQL - 75%</p>
+                </div>
+                <div class="skill-bar">
+                    <div><span style="width: 70%; background-color: #e63946;"></span></div>
+                    <p>Oracle - 70%</p>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Data Visualization Skills Category -->
+        <div class="skill-category">
+            <h3 onclick="toggleSkills(this)">Data Visualization <i class="fas fa-chevron-down"></i></h3>
+            <div class="skills-content">
+                <div class="skill-bar">
+                    <div><span style="width: 80%; background-color: #4CAF50;"></span></div>
+                    <p>PowerBI - 80%</p>
+                </div>
+                <div class="skill-bar">
+                    <div><span style="width: 75%; background-color: #ff5722;"></span></div>
+                    <p>Tableau - 75%</p>
+                </div>
+                <div class="skill-bar">
+                    <div><span style="width: 70%; background-color: #007bff;"></span></div>
+                    <p>Excel - 70%</p>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>© 2024 Pavan Yadav | <a href="mailto:pavansy2006@gmail.com">pavansy2006@gmail.com</a></p>
+    </footer>
 
     <script>
-        window.addEventListener('load', function() {
-            const loader = document.querySelector('.loader');
-            loader.style.display = 'none';
-        });
-
-        const aboutModal = document.getElementById("aboutModal");
-        const resumeModal = document.getElementById("resumeModal");
-
-        document.getElementById("openAboutModal").onclick = function() {
-            aboutModal.style.display = "block";
-        };
-
-        document.getElementById("openResumeModal").onclick = function() {
-            resumeModal.style.display = "block";
-        };
-
-        const closeButtons = document.getElementsByClassName("close");
-        for (let i = 0; i < closeButtons.length; i++) {
-            closeButtons[i].onclick = function() {
-                this.parentElement.parentElement.style.display = "none";
-            };
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const themeIcon = document.getElementById('theme-icon');
+            themeIcon.classList.toggle('fa-moon');
+            themeIcon.classList.toggle('fa-sun');
         }
-
-        window.onclick = function(event) {
-            if (event.target == aboutModal) {
-                aboutModal.style.display = "none";
-            } else if (event.target == resumeModal) {
-                resumeModal.style.display = "none";
+        function toggleSkills(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                icon.classList.replace("fa-chevron-up", "fa-chevron-down");
+            } else {
+                content.style.display = "block";
+                icon.classList.replace("fa-chevron-down", "fa-chevron-up");
             }
-        };
+        }
     </script>
 </body>
 </html>
